@@ -1,5 +1,8 @@
 import userModel from "../schema/user-schema.js";
 
+export const homeRoute = async  (req, res) => {
+    res.status(200).send({message: 'Welcome to the API'});
+}
 
 const addUser = async (request, response) => {
     const user = request.body;
