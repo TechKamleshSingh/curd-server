@@ -3,7 +3,7 @@ import addUser, { getUsers, getUser, editUser, deleteUser, homeRoute } from "../
 
 const router = express.Router()
 
-router.post('/', homeRoute)
+router.get('/', homeRoute)
 router.post('/add', addUser)
 router.get('/all', getUsers)
 router.get('/:id', getUser)
