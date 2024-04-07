@@ -33,16 +33,5 @@ Connection(username, password)
     process.exit(1);
   });
 
-// Error handling middleware for routes
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
-
-// Error handling middleware for other unhandled errors
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Internal Server Error");
-});
 
 module.exports = app;
