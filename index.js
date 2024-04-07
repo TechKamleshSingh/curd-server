@@ -1,8 +1,8 @@
-import express from 'express';
-import Connection from './database/db.js';
-import dotenv from 'dotenv';
-import routes from './routes/route.js';
-import cors from 'cors';
+const dotenv = require("dotenv");
+const express = require("express");
+const cors = require("cors");
+const routes = require("./routes/route");
+const Connection = require("./database/db")
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use('/', routes);
+app.use("/", routes);
 
 // Database Connection
 const username = process.env.DB_USERNAME;
@@ -28,7 +28,7 @@ Connection(username, password)
     app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
   })
   .catch((error) => {
-    console.error('Database connection failed:', error);
+    console.error("Database connection failed:", error);
     // If database connection fails, exit the application
     process.exit(1);
   });
@@ -36,14 +36,13 @@ Connection(username, password)
 // Error handling middleware for routes
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send("Something broke!");
 });
 
 // Error handling middleware for other unhandled errors
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Internal Server Error');
+  res.status(500).send("Internal Server Error");
 });
 
-
-export default  app;
+module.exports = app;
